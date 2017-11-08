@@ -9,7 +9,7 @@ An example of a typical bag of words classification pipeline. Figure by <a href=
 <h2>Brief</h2> 
 <p> 
 </p><ul> 
-  <li>Due date: <b>Dec. 7th</b>, 11:59pm</li> 
+  <li>Due date: <b>Nov. 29th</b>, 11:59pm</li> 
   <li>Need to install cyvlfeat library on your anaconda environment : <code>proj3.py conda install -c menpo cyvlfeat</code>
   <li>Required files: results/index.md, and code/</li>
 
