@@ -6,8 +6,8 @@ import numpy as np
 def get_tiny_images(image_paths):
 
     '''
-    Input : 
-        image_paths: a list(N) of string where where each string is an image 
+    Input :
+        image_paths: a list(N) of string where where each string is an image
         path on the filesystem.
     Output :
         tiny image features : (N, d) matrix of resized and then vectorized tiny
@@ -21,7 +21,14 @@ def get_tiny_images(image_paths):
     # square portion out of each image. Making the tiny images zero mean and    #
     # unit length (normalizing them) will increase performance modestly.        #
     #############################################################################
-    
+
+    tiny_images = []
+    for img_path in image_paths:
+        img = Image.open(img_path)
+        img_resized = np.asarray(img.resize((16, 16), Image.ANTIALIAS)).reshape(1,-1)
+        tiny_images.extend(img_resized)
+    tiny_images = np.asarray(tiny_images)
+
     ##############################################################################
     #                                END OF YOUR CODE                            #
     ##############################################################################
