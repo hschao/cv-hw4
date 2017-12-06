@@ -30,8 +30,8 @@ import numpy as np
 #results are presented.
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--feature', help='feature', type=str, default='bag_of_sift')
-parser.add_argument('--classifier', help='classifier', type=str, default='support_vector_machine')
+parser.add_argument('--feature', help='feature', type=str, default='tiny_image')
+parser.add_argument('--classifier', help='classifier', type=str, default='nearest_neighbor')
 args = parser.parse_args()
 
 DATA_PATH = '../data/'

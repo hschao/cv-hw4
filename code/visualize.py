@@ -51,7 +51,6 @@ def visualize(CATEGORIES, test_image_paths, test_labels_ids, predicted_categorie
         fp_path = os.path.relpath(os.path.join(thumbnails_path, name + '_FP_' + os.path.basename(FP_name[k])), results_path)
         fn_path = os.path.relpath(os.path.join(thumbnails_path, name + '_FN_' + os.path.basename(FN_name[k])), results_path)
         panel.write('| ' + name + ' | ' + '![]('+train_path+')' + ' | ' + '![]('+tp_path+')' + ' | ' + '![]('+fp_path+')' + ' | ' + '![]('+fn_path+')' + ' |' + '\n')
-        
-        os.path.join(Train_name) 
+
     panel.write('\n')
     panel.close()
