@@ -59,22 +59,21 @@ def build_vocabulary(image_paths, vocab_size):
         Clusters centers of Kmeans
     '''
 
-    '''   
+
     bag_of_features = []
     print("Extract SIFT features")
-    pdb.set_trace()
     for path in image_paths:
+        print(path)
         img = np.asarray(Image.open(path),dtype='float32')
         frames, descriptors = dsift(img, step=[5,5], fast=True)
         bag_of_features.append(descriptors)
     bag_of_features = np.concatenate(bag_of_features, axis=0).astype('float32')
-    pdb.set_trace()
     print("Compute vocab")
     start_time = time()
     vocab = kmeans(bag_of_features, vocab_size, initialization="PLUSPLUS")        
     end_time = time()
     print("It takes ", (start_time - end_time), " to compute vocab.")
-    '''
+
     ##################################################################################
     #                                END OF YOUR CODE                                #
     ##################################################################################

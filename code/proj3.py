@@ -3,6 +3,7 @@ from random import shuffle
 import os
 import argparse
 import pickle
+import shutil
 
 from get_image_paths import get_image_paths
 from get_tiny_images import get_tiny_images
@@ -29,8 +30,8 @@ import numpy as np
 #results are presented.
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--feature', help='feature', type=str, default='dumy_feature')
-parser.add_argument('--classifier', help='classifier', type=str, default='dumy_classifier')
+parser.add_argument('--feature', help='feature', type=str, default='bag_of_sift')
+parser.add_argument('--classifier', help='classifier', type=str, default='nearest_neighbor')
 args = parser.parse_args()
 
 DATA_PATH = '../data/'
@@ -70,7 +71,8 @@ def main():
     print("Getting paths and labels for all train and test data")
     train_image_paths, test_image_paths, train_labels, test_labels = \
         get_image_paths(DATA_PATH, CATEGORIES, NUM_TRAIN_PER_CAT)
-
+    test_image_paths = test_image_paths[:200]
+    test_labels = test_labels[:200]
     # TODO Step 1:
     # Represent each image with the appropriate feature
     # Each function to construct features should return an N x d matrix, where
@@ -149,6 +151,21 @@ def main():
    
     build_confusion_mtx(test_labels_ids, predicted_categories_ids, ABBR_CATEGORIES)
     visualize(CATEGORIES, test_image_paths, test_labels_ids, predicted_categories_ids, train_image_paths, train_labels_ids)
+
+    ## Step 4: Output accuracy for different categories, and copy images.
+    dirPath = '../results/thumbnails/' + FEATURE + '-' + CLASSIFIER + '/'
+    shutil.rmtree(dirPath)
+    os.mkdir(dirPath)
+
+    # for c in CATEGORIES:
+    #     correntNum = 0
+    #     for i in range(len(test_image_paths)):
+    #         if test_labels[i] == c:
+    #             correntNum = correntNum + 1
+    #         print(c, )
+
+
+
 
 def build_confusion_mtx(test_labels_ids, predicted_categories, abbr_categories):
     # Compute confusion matrix
